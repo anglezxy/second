@@ -1,14 +1,16 @@
 
+import { Template } from 'meteor/templating';
+
 import '../components/post/post-item.js';
 
 import  './post-page.html';
 import { Posts } from '../../api/post/collection';
 
-Template.postList.helpers({
+/*Template.postList.helpers({
   posts(){
     return Posts.find({},{ sort: { submitted: -1}})
-  }
-});
+  },
+});*/
 
 /*Template.postPage.onCreated(function () {
   const templateInstance=this;

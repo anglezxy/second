@@ -5,6 +5,7 @@ import '../components/loading.html';
 import '../pages/not-found.js';
 import '../pages/access-denied.js';
 
+import './errors.js';
 import './header.html';
 import './layout.html';
 

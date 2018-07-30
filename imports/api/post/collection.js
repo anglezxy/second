@@ -2,6 +2,8 @@ import { Mongo } from 'meteor/mongo';
 
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 
+import { _ } from 'meteor/underscore';
+
 import SimpleSchema from 'simpl-schema';
 
 import { ownsDocument } from '../../modules/permissions.js';
@@ -49,6 +51,13 @@ Posts.attachSchema(new SimpleSchema({
     return !! userId;
   },
 });*/
+
+function validatePost(post) {
+  const errors = {};
+  if (!post.title) errors.title = 'please fill in a headline';
+  if (!post.url) errors.url = 'please fill in a url';
+  return errors;
+};
 Posts.allow({
   update: ownsDocument,
   remove: ownsDocument,
@@ -56,7 +65,8 @@ Posts.allow({
 
 Posts.deny({
   update(userId,post,filedNames){
+    //_.without(array,*values)返回一个删除所有values值后的array副本
     return (_.without(filedNames,'url','title').length > 0);
   }
 });
-export { Posts };
+export { Posts,validatePost };

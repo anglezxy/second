@@ -39,8 +39,4 @@ export const insertPost = new ValidatedMethod({
 
     return { _id: postId };
   },
-
-
-
-
 });

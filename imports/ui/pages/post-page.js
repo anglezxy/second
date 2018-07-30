@@ -1,15 +1,16 @@
-import { Template } from 'meteor/templating';
-import { FlowRouter } from 'meteor/kadira:flow-router';
-
-import { Posts } from '../../api/post/collection.js';
-
-import './not-found.js';
 
 import '../components/post/post-item.js';
 
 import  './post-page.html';
+import { Posts } from '../../api/post/collection';
 
-Template.postPage.onCreated(function () {
+Template.postList.helpers({
+  posts(){
+    return Posts.find({},{ sort: { submitted: -1}})
+  }
+});
+
+/*Template.postPage.onCreated(function () {
   const templateInstance=this;
   templateInstance.autorun(() => {
       if (FlowRouter.subsReady('posts')) {
@@ -24,4 +25,4 @@ Template.postPage.helpers({
     return Posts.findOne(FlowRouter.getParam('_id'));
   },
 
-});
+});*/
